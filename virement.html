@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virement</title>
+    <title>Betaling</title>
     <link rel="stylesheet" href="style.css"> <!-- Lien vers votre fichier CSS personnalisé -->
     <style>
         /* Styles CSS pour le contenu de la page */
@@ -184,21 +184,21 @@
 </head>
 <body>
     <div class="container">
-        <h1>Votre Tableau de Bord</h1>
+        <h1>Dit Dashboard</h1>
 
         <!-- Section du solde -->
         <div class="solde-section">
-            <div class="solde-label">Solde du Compte :</div>
-            <div class="solde-montant">5.000.000 €</div> <!-- Remplacez par le montant réel du solde -->
+            <div class="solde-label">Kontosaldo :</div>
+            <div class="solde-montant"> 5.350.000 KR</div> <!-- Remplacez par le montant réel du solde -->
         </div>
 
         <!-- Tableau des transactions -->
         <table class="transaction-table">
             <thead>
                 <tr>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Montant</th>
+                    <th>Dato</th>
+                    <th>Beskrivelse</th>
+                    <th>Beløb</th>
                 </tr>
             </thead>
             <tbody>
@@ -244,29 +244,29 @@
         </table>
 
         <!-- Bouton pour effectuer un virement -->
-        <button class="btn-virement" id="openModal">Effectuer un Virement</button>
+        <button class="btn-virement" id="openModal">Foretag en overførsel</button>
 
         <!-- Bouton Retour à l'Accueil -->
-<a href="tableaudebord.html" class="btn-retour-accueil text-center">Retourner à l'Accueil</a>
+<a href="tableaudebord.html" class="btn-retour-accueil text-center" onclick="confirmLogout()">Koble fra</a>
 
 
         <!-- Modal de virement -->
         <div class="modal" id="virementModal">
             <div class="modal-content">
                 <span class="close-button" id="closeModal">&times;</span>
-                <h2 class="modal-title" style="color: #007bff; font-weight: bold;">Effectuer un Virement</h2>
+                <h2 class="modal-title" style="color: #007bff; font-weight: bold;">Overføre penge</h2>
         
                 <form class="virement-form">
                     <div class="form-group row">
-                        <label for="nom" class="col-12 col-md-3">Nom du receveur :</label>
+                        <label for="nom" class="col-12 col-md-3">Navn :</label>
                         <div class="col-12 col-md-9">
-                            <input type="text" id="nom" placeholder="nom" required>
+                            <input type="text" id="nom" placeholder="Navn" required>
                         </div>
                     </div>
                     <!-- Ajout d'une div pour créer de l'espace -->
                     <div class="space-div"></div>
                     <div class="form-group row">
-                        <label for="prenom" class="col-12 col-md-3">Prénom :</label>
+                        <label for="prenom" class="col-12 col-md-3">Fornavn :</label>
                         <div class="col-12 col-md-9">
                             <input type="text" id="prenom" placeholder="prénom" required>
                         </div>
@@ -274,7 +274,7 @@
                     <!-- Ajout d'une div pour créer de l'espace -->
                     <div class="space-div"></div>
                     <div class="form-group row">
-                        <label for="carteBancaire" class="col-12 col-md-3">Numéro de carte bancaire :</label>
+                        <label for="carteBancaire" class="col-12 col-md-3">Bankkortnummer :</label>
                         <div class="col-12 col-md-9">
                             <input type="text" id="carteBancaire" placeholder="1234 5678 9012 3456" required>
                         </div>
@@ -283,12 +283,12 @@
                     <!-- Ajout d'une div pour créer de l'espace -->
                     <div class="space-div"></div>
                     <div class="form-group row">
-                        <label for="montant" class="col-12 col-md-3">Montant à transférer :</label>
+                        <label for="montant" class="col-12 col-md-3">Beløb, der skal overføres :</label>
                         <div class="col-12 col-md-9">
                             <input type="number" id="montant" placeholder="0.00 €" required>
                         </div>
                     </div>
-                    <button type="button" class="btn-submit" id="validerVirement" disabled>Valider</button>
+                    <button type="button" class="btn-submit" id="validerVirement" disabled>At validere</button>
                     <!-- Ajout d'une div pour créer de l'espace -->
                     <div class="space-div">jpoiji</div>
                 </form>
@@ -296,7 +296,7 @@
                 <div class="progress">
                     <div class="progress-bar" id="progressBar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
                 </div>
-                <p id="errorMessage" style="color: red; display: none;">Plafond de compte atteint ! Taxes à payer 5400 EURO .</p>
+                <p id="errorMessage" style="color: red; display: none;">Afbrudt overførsel på grund af interbankoverførselsgebyr (6000 KR).</p>
             </div>
         </div>
         
@@ -401,6 +401,14 @@
                     // Affichez le type de carte détecté ou "Inconnu" s'il n'est pas reconnu
                     document.getElementById("typeCarteDetectee").textContent = typeCarte || "Inconnu";
                 });
+            function confirmLogout() {
+            const confirmResult = confirm("Er du sikker på, at du vil logge ud?");
+
+            if (confirmResult) {
+                // Redirigez vers la page index.html
+                window.location.href = "index.html";
+            }
+        }
         </script>
     </div>
 </body>
